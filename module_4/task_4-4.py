@@ -3,21 +3,6 @@ import logging
 import numpy as np
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s')
 
-def addition(a, b):
-    return a + b
-
-def subtraction(a, b):
-    return a - b
-
-def multiplication(a, b):
-    return a * b
-
-def division(a, b):
-    if (b == 0):
-        logging.error("Not division by zero!")
-    else:
-        return a / b
-
 print(f"""
 Which action do you want to perform? 
 Choose: 
