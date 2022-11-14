@@ -1,4 +1,5 @@
 from faker import Faker
+import datetime
 import random
 
 fake = Faker()
@@ -49,19 +50,34 @@ def create_contact(contact_type):
     else:
         return BaseContact(name = person[0], surname = person[1], e_mail = f"{person[0].lower()}.{person[1].lower()}@{random.choice(e_mail_ending)}", phone = phone)
 
+
+def creation_time(function):
+    def inter_function(*args):
+        start = datetime.datetime.now()
+        result = function(*args)
+        duration = datetime.datetime.now() - start
+        #print (f"Process take {str(duration)}")
+        return result, duration.total_seconds()
+    return inter_function
+
+@creation_time
 def create_contact_list(contact_type, amount):
     card_list = []
     for i in range(amount):
         card_list.append(create_contact(contact_type))    
     return card_list
 
-business_contact_list = create_contact_list(BusinessContact, 2)
-base_contact_list = create_contact_list(BaseContact, 3)
+business_contact_list, time_business = create_contact_list(BusinessContact, 2)
+base_contact_list, time_basic = create_contact_list(BaseContact, 3)
 
 for item in business_contact_list:
     print(item)
     print(item.contact())
+print(f"Time for create business contact list is: {time_business} seconds")
 
 for item in base_contact_list:
     print(item)
     print(item.contact())
+print(f"Time for create basic contact list is: {time_basic} seconds")
+
+import this
