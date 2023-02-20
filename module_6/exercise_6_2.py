@@ -26,5 +26,5 @@ def create_connection_in_memory():
            conn.close()
 
 if __name__ == '__main__':
-   create_connection(r"./module_6/database.db")
+   create_connection(r"./database.db")
    create_connection_in_memory()

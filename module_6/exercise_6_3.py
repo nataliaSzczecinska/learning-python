@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-engine = create_engine('sqlite:///module_6/database.db')
+engine = create_engine('sqlite:///database.db')
 
 print(engine.driver)
 
